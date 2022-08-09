@@ -27,6 +27,11 @@
 ;; Avoid garbage collection during startup.
 ;; see `SPC h . dotspacemacs-gc-cons' for more info
 (defconst emacs-start-time (current-time))
+(when (eq system-type 'windows-nt)
+	  (setenv "Home" (getenv "UserProfile"))
+		;;(setq user-emacs-directory (concat (getenv "UserProfile") "/.emacs.d/"))
+    ;;(load (substitute-env-vars "${UserProfile}/.emacs.d/init.el"))
+    )
 (setq gc-cons-threshold 402653184 gc-cons-percentage 0.6)
 (load (concat (file-name-directory load-file-name)
               "core/core-versions")
